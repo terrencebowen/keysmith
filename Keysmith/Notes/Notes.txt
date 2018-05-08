@@ -1,0 +1,144 @@
+﻿---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Workflow
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Load Metadata
+    If Is Persisted Metadata Available
+        √ Create Metadata
+            √ Get Servers
+                √ Read Metadata Nodes
+                    Sql Data Connection String
+                    Sql Query Builder
+                    Sql Data Reader
+                Aggregate Metadata Nodes
+            Establish Column Relationships
+            Build Adjacency Graph Metadata
+        Persist Metadata
+    Else
+        Read Metadata
+    End If
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Tasks
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Use .ToList() instead of .AsList(), .AsList() is used everywhere but it is wrong.
+Identifier does not need to be passed in to the concrete metadata identifiers Lol.
+I think your whole databsae structural clone approach is flawed or broken, try a fresh new approach.
+Rename IContextScope to IContextMetadata.
+Consider adding a row count on the table, or a dictionary, it may be useful metadata when determining which table to select!
+Never inject mutatable state into a functional class.
+Never use contructor logic (create another provider or do whatever you have to - to prevent this).
+Complete IQuerySelection and IContextScope (you may need another IContextScopeProvider class again).
+Consider taking all the uppercase words originally in the value when creating aliases (VisaSREAcquirerBINMap).
+Checking For Updates (you may want to consider creating a dictionary date modification date times instead of constructor injecting it on the tables - because different things like git as well as module definitions and IMetadataIdentifiers will have DateTimes so you need a universal dictoinary container to hold all of this info).
+Applying Updates.
+Decrease Commented Debt.
+SQL Lite Caching.
+Null checks throughout the entire solution and testing around those checks will be the most important first pass of testing!
+Make sure you're using ints and doubles the right way for all usages of all integral types in general.
+Consider refactoring main metadata iteration using split on Dapper logic.
+Make sure all signature names match input arguments.
+It appears the simple names on the fragment other than the multipartidentifier and name of itself are not being used very often if at all (for example.. .SchemaName on the table, .TableName on the column, etc.).
+Once you're in a comfortable spot after creating the UI, delete all properties from the metadata models that aren't being used.
+Remove all magic numbers from code (they're floating around everwhere).
+Remove all excessively long signature parameter lists you're passing in methods and classes as dependencies.
+Make everything readonly where ever you can.
+Try to set capacities for all lists where ever possible (especially in the metadata builder).
+Make sure all ArgumentOutOfRange and other default switch exceptions have the right parameters message values.
+Make sure you're not breaking law of demeter anywhere or violating DRY.
+Make sure all code is readable and debug friendly (create local variables where neccessary).
+Try to find a way if you can in the QueryTextProvider to prevent SQL injection.
+Add inversion of control to the program class Microsoft.Practices.
+Make sure all classes eventually end up in their own file (consider a clean and organized Visual Studio folder structure).
+Make sure all of your boolean conditions are assigned variable names to make them more readable.
+Evaluate all of your signature and ensure that they are all ordered in a way that makes the most sense and reads the most clearly.
+Change the return type of GetQuery so that it returns an object or string (for the UI to then display) - (select clause, from, where etc.).
+Add object identiifer to tables so that you can persist the identifiers to concat them to optimize future use joins (not sure if these object_identifiers change, or if you care if they change for that matter either).
+Make sure all TODOs are removed (the TODO Explorer Window is on ReSharper > Tools > To-do Explorer.
+Do you need to worry about failed unrolled back transactions?
+Make sure all of your TSQL case sensitive conventions are correct.
+Consider turning all metadata node sql queries into try parse boolean methods so that they safely skip the iteration in the event something errors.
+Make sure you're not using expressions like database.Server.ServerName when you can easily do database.ServerName (make use of the property or get rid of it if it's not necessary).
+Make sure you're using string.IsNullOrWhitespace and string.IsNullOrEmpty correctly - intentionally *Possibly use this instead if (string.IsNullOrEmpty(value?.Trim())).
+Make sure you replace IList with IReadOnlyList everwhere you can.
+GetDatabaseNames is wrong, you finally need to get it right.
+Don't go out of your way to ToList or AsList when you can simply make the type an IListReadOnly or something.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Reminders
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+4.6.1 is the highest framework currently installed on all local work machines.
+You should only really need all family dictionaries that reference table and column families (because you can only ever select a single table or column).
+Database Modification Detection
+    Where are the changes? (reference RelationshipOrigin)
+    Are there any changes? (consider placing a DateTimeModification property on IMetadataIdentifier)
+    What changed? (this will be a list of IMetadataIdentifiers)
+    How did they change? (this will be the enum Modificaiton)
+Best Practices: In a SELECT statement, always use an ORDER BY clause with the TOP clause. This is the only way to predictably indicate which rows are affected by TOP.
+Prevent SQL Injection everwhere by using Dapper's DynamicParameters class and Dapper's QueryMultiple.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Features
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Keep in mind that a table will need the ability to join on to itself!
+Syntax highlighting when selecting matching words in query.
+Query Persistence.
+A most recently used list of previous queries persisted.
+Consider a way to exclude null columns from result once you execute.
+Suggested column relationships found when column names match but are not linked as relationships.
+Logging (especially silent failures).
+Consider parsing additional relationships from code using Roslyn to parse string literals and hydrate string fields and local variables.
+Consider creating a class that simply creates identifier objects from string.
+Consider adding an IInstance object that will contain a list of IServer objects (although you won't be able to make cross instance references at least you can switch different instances via the UI).
+Adding raw sql to a window, and parsing it for relationships, or at the very least formatting it.
+Consider detecting if a database is a structural clone automatically.
+Possibly place all table alias.* selections before any actual direct column selections in the select list if both metadata identifiers happen to be in the select list.
+Consider actually adding the relationships you find that are defined as KeyDefinitions.
+Consider the ability for multiple tabs for holding instances and seperate queries just like in SSMS.
